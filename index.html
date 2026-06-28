@@ -6,7 +6,7 @@
     <title>Bella Flor - Moda Feminina</title>
     <link rel="stylesheet" href="style.css">
     <!-- Ícones FontAwesome para o carrinho e WhatsApp ficarem bonitos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
@@ -16,7 +16,7 @@
         <p>Moda Feminina</p>
     </header>
 
-    <!-- BARRA DE BUSCA E CATEGORIAS (No início do site) -->
+    <!-- BARRA DE BUSCA E CATEGORIAS -->
     <section class="busca-filtros">
         <div class="busca">
             <input type="text" id="buscar" onkeyup="buscarProdutos()" placeholder="🔍 Buscar produtos...">
@@ -47,7 +47,7 @@
     <!-- MENU DO CARRINHO LATERAL -->
     <div id="carrinho-lateral" class="carrinho">
         <div class="carrinho-header">
-            <h3>Seu Carrinho</h3>
+            <h3>🛒 Seu Carrinho</h3>
             <button onclick="fecharCarrinho()" class="btn-fechar">Fechar X</button>
         </div>
         <div id="itens-carrinho">
@@ -74,15 +74,15 @@
         </div>
     </div>
 
-    <!-- BOTÕES FLUTUANTES (Fixos no canto inferior direito da tela) -->
+    <!-- BOTÕES FLUTUANTES FIXOS (Ficam grudados e rolam com a tela) -->
     <div class="botoes-flutuantes">
-        <!-- Botão do Carrinho -->
+        <!-- 1º O Carrinho (Fica em cima e ABRE a barra lateral) -->
         <div class="icone-carrinho-fixo" onclick="abrirCarrinho()">
             <i class="fas fa-shopping-cart"></i>
             <span id="contador">0</span>
         </div>
         
-        <!-- Botão Direto do WhatsApp -->
+        <!-- 2º O WhatsApp (Fica em baixo e vai direto para a conversa) -->
         <a href="https://wa.me/5591985144347" target="_blank" class="icone-whatsapp-fixo">
             <i class="fab fa-whatsapp"></i>
         </a>
