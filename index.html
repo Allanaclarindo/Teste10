@@ -1,101 +1,94 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bella Flor | Moda Feminina</title>
-
+    <title>Bella Flor - Moda Feminina</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Ícones -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Ícones FontAwesome para o carrinho e WhatsApp ficarem bonitos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
 
-<header>
+    <!-- CABEÇALHO -->
+    <header>
+        <h1>Bella Flor</h1>
+        <p>Moda Feminina</p>
+    </header>
 
-    <h1>Bella Flor</h1>
-    <p>Moda Feminina</p>
+    <!-- BARRA DE BUSCA E CATEGORIAS (No início do site) -->
+    <section class="busca-filtros">
+        <div class="busca">
+            <input type="text" id="buscar" onkeyup="buscarProdutos()" placeholder="🔍 Buscar produtos...">
+        </div>
+        
+        <div class="filtros">
+            <button onclick="filtrarCategoria('Todos')">Todos</button>
+            <button onclick="filtrarCategoria('Vestidos')">Vestidos</button>
+            <button onclick="filtrarCategoria('Conjuntos')">Conjuntos</button>
+            <button onclick="filtrarCategoria('Tops')">Tops</button>
+            <button onclick="filtrarCategoria('Shorts')">Shorts</button>
+            <button onclick="filtrarCategoria('Blusas')">Blusas</button>
+            <button onclick="filtrarCategoria('Macaquinhos')">Macaquinhos</button>
+            <button onclick="filtrarCategoria('jaquetas')">Jaquetas</button>
+        </div>
+    </section>
 
-</header>
+    <!-- SEÇÃO PRINCIPAL DO CATÁLOGO -->
+    <main>
+        <section id="produtos">
+            <h2>Catálogo</h2>
+            <div id="lista-produtos" class="produtos">
+                <!-- Os produtos do JSON serão carregados aqui via JavaScript -->
+            </div>
+        </section>
+    </main>
 
-<section id="produtos">
-
-    <h2>Catálogo</h2>
-
-    <!-- BUSCA -->
-
-    <div class="busca">
-
-        <input
-            type="text"
-            id="buscar"
-            placeholder="🔍 Buscar produtos..."
-            onkeyup="buscarProdutos()">
-
-    </div>
-
-    <!-- FILTROS -->
-
-    <div class="filtros">
-
-        <button onclick="filtrarCategoria('Todos')">Todos</button>
-
-        <button onclick="filtrarCategoria('Vestidos')">Vestidos</button>
-
-        <button onclick="filtrarCategoria('Conjuntos')">Conjuntos</button>
-
-        <button onclick="filtrarCategoria('Tops')">Tops</button>
-
-        <button onclick="filtrarCategoria('Shorts')">Shorts</button>
-
-        <button onclick="filtrarCategoria('Blusas')">Blusas</button>
-
-        <button onclick="filtrarCategoria('Macaquinhos')">Macaquinhos</button>
-
-        <button onclick="filtrarCategoria('Jaquetas')">Jaquetas</button>
-
-    </div>
-
-    <div class="produtos" id="lista-produtos"></div>
-
-</section>
-
-<!-- MODAL -->
-
-<div id="modal" class="modal">
-
-    <div class="modal-conteudo">
-
-        <h3 id="modal-nome"></h3>
-
-        <div id="modal-imagens"></div>
-
-        <button onclick="fecharModal()">
-
-            Fechar
-
+    <!-- MENU DO CARRINHO LATERAL -->
+    <div id="carrinho-lateral" class="carrinho">
+        <div class="carrinho-header">
+            <h3>Seu Carrinho</h3>
+            <button onclick="fecharCarrinho()" class="btn-fechar">Fechar X</button>
+        </div>
+        <div id="itens-carrinho">
+            <!-- Itens adicionados aparecem aqui -->
+        </div>
+        <div id="total">
+            <b>Subtotal:</b> R$ 0,00<br>
+            <b>Frete:</b> R$ 0,00<br>
+            <b>Total:</b> R$ 0,00
+        </div>
+        <button onclick="enviarCarrinhoWhatsApp()" class="btn-finalizar">
+            <i class="fab fa-whatsapp"></i> Finalizar Pedido via WhatsApp
         </button>
-
     </div>
 
-</div>
+    <!-- MODAL DE DETALHES DO PRODUTO (Escondido por padrão) -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span onclick="fecharModal()" class="fechar-modal">&times;</span>
+            <h2 id="modal-nome">Nome do Produto</h2>
+            <div id="modal-imagens">
+                <!-- Conteúdo gerado pelo JS -->
+            </div>
+        </div>
+    </div>
 
-<!-- MODAL IMAGEM -->
+    <!-- BOTÕES FLUTUANTES (Fixos no canto inferior direito da tela) -->
+    <div class="botoes-flutuantes">
+        <!-- Botão do Carrinho -->
+        <div class="icone-carrinho-fixo" onclick="abrirCarrinho()">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="contador">0</span>
+        </div>
+        
+        <!-- Botão Direto do WhatsApp -->
+        <a href="https://wa.me/5591985144347" target="_blank" class="icone-whatsapp-fixo">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
-<div id="modal-imagem-full">
-
-    <img id="img-full">
-
-    <div id="miniaturas"></div>
-
-    <button onclick="fecharImagemFull()">
-
-        ✕
-
-    </button>
-
-  </div>
+    <!-- VÍNCULO COM O JAVASCRIPT -->
+    <script src="script.js"></script>
+</body>
+</html>
