@@ -24,7 +24,7 @@ function renderizarProdutos() {
 
     lista.innerHTML += `
       <div class="produto">
-        <button class="btn-favorito ${estaFavoritado}" onclick="toggleFavorito('${p.nome}', this)">
+        <button class="btn-favorito ${estaFavoritado}" onclick="toggleFavorito('${p.nome}', this, event)">
           <i class="${iconeCoracao}"></i>
         </button>
         <img src="${img[0]}" onclick="abrirModal(${index})">
@@ -37,40 +37,56 @@ function renderizarProdutos() {
   });
 }
 
-/* ================= SISTEMA DE FAVORITOS ================= */
-function toggleFavorito(nomeProduto, elemento) {
-  const indice = favoritos.indexOf(nomeProduto);
-  const icone = elemento.querySelector("i");
+/* ================= GERENCIADOR UNIFICADO DE FAVORITOS ================= */
+function toggleFavorito(nomeProduto, elemento, event) {
+  if(event) event.stopPropagation(); // Evita abrir o modal se clicar no coração do catálogo
   
+  const indice = favoritos.indexOf(nomeProduto);
+  const icones = document.querySelectorAll(`[data-produto="${nomeProduto}"] i, button[onclick*="'${nomeProduto}'"] i`);
+  const botoes = document.querySelectorAll(`[data-produto="${nomeProduto}"], button[onclick*="'${nomeProduto}'"]`);
+  
+  let virouFavorito = false;
+
   if (indice === -1) {
     favoritos.push(nomeProduto);
-    elemento.classList.add("favoritado");
-    icone.className = "fa-solid fa-heart"; // Altera para o coração cheio
+    virouFavorito = true;
   } else {
     favoritos.splice(indice, 1);
-    elemento.classList.remove("favoritado");
-    icone.className = "fa-regular fa-heart"; // Altera para o coração contorno
   }
+
+  // Sincroniza visualmente todos os botões desse produto (No catálogo e no Modal ao mesmo tempo!)
+  botoes.forEach(btn => {
+    if(virouFavorito) btn.classList.add("favoritado");
+    else btn.classList.remove("favoritado");
+  });
+
+  icones.forEach(i => {
+    i.className = virouFavorito ? "fa-solid fa-heart" : "fa-regular fa-heart";
+  });
   
   localStorage.setItem("favoritos", JSON.stringify(favoritos));
 }
 
-/* ================= MODAL DE SELEÇÃO ================= */
+/* ================= MODAL COM CORAÇÃO FLUTUANTE ================= */
 function abrirModal(index) {
   produtoSelecionado = produtos[index];
   document.getElementById("modal").style.display = "flex";
   document.getElementById("modal-nome").innerText = produtoSelecionado.nome;
   
-  const images = produtoSelecionado.imagens || [produtoSelecionado.imagem];
-  const cores = produtoSelecionado.cores
-    ? produtoSelecionado.cores.split(",").map(c => c.trim())
-    : ["Única"];
-  const tamanhos = produtoSelecionado.tamanhos
-    ? produtoSelecionado.tamanhos.split(",").map(t => t.trim())
-    : ["Único"];
+  const imagens = produtoSelecionado.imagens || [produtoSelecionado.imagem];
+  const cores = produtoSelecionado.cores ? produtoSelecionado.cores.split(",").map(c => c.trim()) : ["Única"];
+  const tamanhos = produtoSelecionado.tamanhos ? produtoSelecionado.tamanhos.split(",").map(t => t.trim()) : ["Único"];
+
+  // Verifica o estado atual de favoritos para renderizar o coração correto sobre a foto do modal
+  const estaFavoritado = favoritos.includes(produtoSelecionado.nome) ? "favoritado" : "";
+  const iconeCoracao = favoritos.includes(produtoSelecionado.nome) ? "fa-solid fa-heart" : "fa-regular fa-heart";
 
   document.getElementById("modal-imagens").innerHTML = `
-    <img id="img-principal" src="${images[0]}">
+    <button class="btn-favorito ${estaFavoritado}" data-produto="${produtoSelecionado.nome}" onclick="toggleFavorito('${produtoSelecionado.nome}', this, event)">
+      <i class="${iconeCoracao}"></i>
+    </button>
+    
+    <img id="img-principal" src="${imagens[0]}" style="width:100%; height:320px; object-fit:cover; border-radius:12px;">
     
     <label>Cor</label>
     <select id="cor">
@@ -83,19 +99,17 @@ function abrirModal(index) {
     </select>
     
     <button onclick="adicionarDoModal()">Adicionar ao carrinho</button>
-    <button onclick="fecharModal()" class="modal-btn-fechar-baixo">Fechar</button>
     
-    <div class="miniaturas-container">
-      ${images.map(img => `
-        <img src="${img}" onclick="trocarImagem('${img}')">
+    <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
+      ${imagens.map(img => `
+        <img src="${img}" onclick="trocarImagem('${img}')" style="width:60px; height:60px; object-fit:cover; cursor:pointer; border-radius:8px; border: 1px solid #ddd;">
       `).join("")}
     </div>
   `;
 }
 
 function trocarImagem(src) {
-  const imgPrincipal = document.getElementById("img-principal");
-  if (imgPrincipal) imgPrincipal.src = src;
+  document.getElementById("img-principal").src = src;
 }
 
 function fecharModal() {
@@ -156,13 +170,9 @@ function fecharCarrinho() {
   document.getElementById("carrinho-lateral").classList.remove("ativo");
 }
 
-function calcularFrete() {
-  frete = 10.00;
-}
-
 function atualizarCarrinho() {
   const box = document.getElementById("itens-carrinho");
-  if (!box) return;
+  if(!box) return;
   box.innerHTML = "";
   let subtotal = 0;
   
@@ -171,10 +181,9 @@ function atualizarCarrinho() {
     box.innerHTML += `
       <div class="item-carrinho">
         <b>${item.nome}</b><br>
-        Cor: ${item.cor}<br>
-        Tamanho: ${item.tamanho}<br>
-        R$ ${item.preco.toFixed(2)}<br><br>
-        <button onclick="diminuir(${i})">−</button>
+        Cor: ${item.cor} | Tamanho: ${item.tamanho}<br>
+        R$ ${item.preco.toFixed(2)}<br>
+        <button onclick="diminuir(${i})">-</button>
         <strong>${item.quantidade}</strong>
         <button onclick="aumentar(${i})">+</button>
         <button onclick="remover(${i})">🗑️</button>
@@ -182,82 +191,59 @@ function atualizarCarrinho() {
     `;
   });
   
-  calcularFrete();
+  frete = carrinho.length > 0 ? 10.00 : 0;
   const totalFinal = subtotal + frete;
-  
-  const totalElem = document.getElementById("total");
-  if (totalElem) {
-    totalElem.innerHTML = `
-      <b>Subtotal:</b> R$ ${subtotal.toFixed(2)}<br>
-      <b>Frete:</b> R$ ${frete.toFixed(2)}<br>
-      <b>Total:</b> R$ ${totalFinal.toFixed(2)}
-    `;
-  }
-  
-  const contadorElem = document.getElementById("contador");
-  if (contadorElem) contadorElem.innerText = carrinho.length;
-  
+  document.getElementById("total").innerHTML = `
+    <b>Subtotal:</b> R$ ${subtotal.toFixed(2)}<br>
+    <b>Frete:</b> R$ ${frete.toFixed(2)}<br>
+    <b>Total:</b> R$ ${totalFinal.toFixed(2)}
+  `;
+  document.getElementById("contador").innerText = carrinho.length;
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
 function enviarCarrinhoWhatsApp() {
-  if (carrinho.length === 0) {
-    alert("Seu carrinho está vazio.");
-    return;
-  }
+  if (carrinho.length === 0) return alert("Seu carrinho está vazio.");
   let subtotal = 0;
   let msg = "🛍️ *PEDIDO BELLA FLOR*%0A%0A";
   carrinho.forEach(item => {
     subtotal += item.preco * item.quantidade;
-    msg += `• ${item.nome}%0A`;
-    msg += `Cor: ${item.cor}%0A`;
-    msg += `Tamanho: ${item.tamanho}%0A`;
-    msg += `Quantidade: ${item.quantidade}%0A`;
-    msg += `Valor: R$ ${(item.preco * item.quantidade).toFixed(2)}%0A%0A`;
+    msg += `• ${item.nome}%0ACon: ${item.cor} | Tam: ${item.tamanho}%0AQtd: ${item.quantidade}%0A%0A`;
   });
-  calcularFrete();
-  const totalFinal = subtotal + frete;
-  msg += `🚚 Frete: R$ ${frete.toFixed(2)}%0A`;
-  msg += `💰 Total: R$ ${totalFinal.toFixed(2)}`;
+  msg += `💰 *Total:* R$ ${(subtotal + frete).toFixed(2)}`;
   window.open(`https://wa.me/5591985144347?text=${msg}`, "_blank");
 }
 
 function buscarProdutos(){
   const texto = document.getElementById("buscar").value.toLowerCase();
   const cards = document.querySelectorAll(".produto");
-  cards.forEach(card=>{
+  cards.forEach(card => {
     const nome = card.querySelector("h3").innerText.toLowerCase();
-    if(nome.includes(texto)){
-      card.style.display="flex";
-    }else{
-      card.style.display="none";
-    }
+    card.style.display = nome.includes(texto) ? "block" : "none";
   });
 }
 
 function filtrarCategoria(categoria){
-    if(categoria==="Todos"){
-        renderizarProdutos();
-        return;
-    }
-    lista.innerHTML="";
-    produtos
-    .filter(p=>p.categoria===categoria)
-    .forEach((p,index)=>{
-        let img=p.imagens || [p.imagem];
-        const estaFavoritado = favoritos.includes(p.nome) ? "favoritado" : "";
-        const iconeCoracao = favoritos.includes(p.nome) ? "fa-solid fa-heart" : "fa-regular fa-heart";
+  if(categoria === "Todos") {
+    renderizarProdutos();
+    return;
+  }
+  lista.innerHTML = "";
+  produtos.filter(p => p.categoria === categoria).forEach(p => {
+    const img = p.imagens || [p.imagem];
+    const estaFavoritado = favoritos.includes(p.nome) ? "favoritado" : "";
+    const iconeCoracao = favoritos.includes(p.nome) ? "fa-solid fa-heart" : "fa-regular fa-heart";
 
-        lista.innerHTML+=`
-        <div class="produto">
-            <button class="btn-favorito ${estaFavoritado}" onclick="toggleFavorito('${p.nome}', this)">
-              <i class="${iconeCoracao}"></i>
-            </button>
-            <img src="${img[0]}" onclick="abrirModal(${produtos.indexOf(p)})">
-            <h3>${p.nome}</h3>
-            <p>${p.preco}</p>
-            <button onclick="abrirModal(${produtos.indexOf(p)})">Comprar</button>
-        </div>
-        `;
-    });
+    lista.innerHTML += `
+      <div class="produto">
+        <button class="btn-favorito ${estaFavoritado}" onclick="toggleFavorito('${p.nome}', this, event)">
+          <i class="${iconeCoracao}"></i>
+        </button>
+        <img src="${img[0]}" onclick="abrirModal(${produtos.indexOf(p)})">
+        <h3>${p.nome}</h3>
+        <p>${p.preco}</p>
+        <button onclick="abrirModal(${produtos.indexOf(p)})">Comprar</button>
+      </div>
+    `;
+  });
 }
