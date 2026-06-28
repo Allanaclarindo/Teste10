@@ -1,5 +1,6 @@
 let produtos = [];
 let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 let produtoSelecionado = null;
 let frete = 0;
 const lista = document.getElementById("lista-produtos");
@@ -11,16 +12,21 @@ fetch("produtos.json")
     produtos = data;
     renderizarProdutos();
     atualizarCarrinho();
-  })
-  .catch(err => console.error("Erro ao carregar o JSON:", err));
+  });
 
 function renderizarProdutos() {
   if (!lista) return;
   lista.innerHTML = "";
   produtos.forEach((p, index) => {
     const img = p.imagens || [p.imagem];
+    const estaFavoritado = favoritos.includes(p.nome) ? "favoritado" : "";
+    const iconeCoracao = favoritos.includes(p.nome) ? "fa-solid fa-heart" : "fa-regular fa-heart";
+
     lista.innerHTML += `
       <div class="produto">
+        <button class="btn-favorito ${estaFavoritado}" onclick="toggleFavorito('${p.nome}', this)">
+          <i class="${iconeCoracao}"></i>
+        </button>
         <img src="${img[0]}" onclick="abrirModal(${index})">
         <h3>${p.nome}</h3>
         <p>${p.preco}</p>
@@ -31,46 +37,65 @@ function renderizarProdutos() {
   });
 }
 
-/* ================= MODAL ================= */
+/* ================= SISTEMA DE FAVORITOS ================= */
+function toggleFavorito(nomeProduto, elemento) {
+  const indice = favoritos.indexOf(nomeProduto);
+  const icone = elemento.querySelector("i");
+  
+  if (indice === -1) {
+    favoritos.push(nomeProduto);
+    elemento.classList.add("favoritado");
+    icone.className = "fa-solid fa-heart"; // Altera para o coração cheio
+  } else {
+    favoritos.splice(indice, 1);
+    elemento.classList.remove("favoritado");
+    icone.className = "fa-regular fa-heart"; // Altera para o coração contorno
+  }
+  
+  localStorage.setItem("favoritos", JSON.stringify(favoritos));
+}
+
+/* ================= MODAL DE SELEÇÃO ================= */
 function abrirModal(index) {
   produtoSelecionado = produtos[index];
   document.getElementById("modal").style.display = "flex";
   document.getElementById("modal-nome").innerText = produtoSelecionado.nome;
-  const imagens = produtoSelecionado.imagens || [produtoSelecionado.imagem];
+  
+  const images = produtoSelecionado.imagens || [produtoSelecionado.imagem];
   const cores = produtoSelecionado.cores
     ? produtoSelecionado.cores.split(",").map(c => c.trim())
     : ["Única"];
   const tamanhos = produtoSelecionado.tamanhos
     ? produtoSelecionado.tamanhos.split(",").map(t => t.trim())
     : ["Único"];
-    
+
   document.getElementById("modal-imagens").innerHTML = `
-    <img id="img-principal"
-         src="${imagens[0]}"
-         style="width:100%; border-radius:10px;">
+    <img id="img-principal" src="${images[0]}">
+    
     <label>Cor</label>
     <select id="cor">
       ${cores.map(c => `<option value="${c}">${c}</option>`).join("")}
     </select>
+    
     <label>Tamanho</label>
     <select id="tamanho">
       ${tamanhos.map(t => `<option value="${t}">${t}</option>`).join("")}
     </select>
-    <button onclick="adicionarDoModal()">
-      Adicionar ao carrinho
-    </button>
-    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
-      ${imagens.map(img => `
-        <img src="${img}"
-             onclick="trocarImagem('${img}')"
-             style="width:60px;height:60px;object-fit:cover;cursor:pointer;border-radius:8px;">
+    
+    <button onclick="adicionarDoModal()">Adicionar ao carrinho</button>
+    <button onclick="fecharModal()" class="modal-btn-fechar-baixo">Fechar</button>
+    
+    <div class="miniaturas-container">
+      ${images.map(img => `
+        <img src="${img}" onclick="trocarImagem('${img}')">
       `).join("")}
     </div>
   `;
 }
 
 function trocarImagem(src) {
-  document.getElementById("img-principal").src = src;
+  const imgPrincipal = document.getElementById("img-principal");
+  if (imgPrincipal) imgPrincipal.src = src;
 }
 
 function fecharModal() {
@@ -104,7 +129,6 @@ function adicionarDoModal() {
   fecharModal();
 }
 
-/* ================= CONTROLES ================= */
 function aumentar(i) {
   carrinho[i].quantidade++;
   atualizarCarrinho();
@@ -132,12 +156,10 @@ function fecharCarrinho() {
   document.getElementById("carrinho-lateral").classList.remove("ativo");
 }
 
-/* ================= FRETE ================= */
 function calcularFrete() {
   frete = 10.00;
 }
 
-/* ================= ATUALIZAR ================= */
 function atualizarCarrinho() {
   const box = document.getElementById("itens-carrinho");
   if (!box) return;
@@ -163,16 +185,21 @@ function atualizarCarrinho() {
   calcularFrete();
   const totalFinal = subtotal + frete;
   
-  document.getElementById("total").innerHTML = `
-    <b>Subtotal:</b> R$ ${subtotal.toFixed(2)}<br>
-    <b>Frete:</b> R$ ${frete.toFixed(2)}<br>
-    <b>Total:</b> R$ ${totalFinal.toFixed(2)}
-  `;
-  document.getElementById("contador").innerText = carrinho.length;
+  const totalElem = document.getElementById("total");
+  if (totalElem) {
+    totalElem.innerHTML = `
+      <b>Subtotal:</b> R$ ${subtotal.toFixed(2)}<br>
+      <b>Frete:</b> R$ ${frete.toFixed(2)}<br>
+      <b>Total:</b> R$ ${totalFinal.toFixed(2)}
+    `;
+  }
+  
+  const contadorElem = document.getElementById("contador");
+  if (contadorElem) contadorElem.innerText = carrinho.length;
+  
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
-/* ================= WHATSAPP ================= */
 function enviarCarrinhoWhatsApp() {
   if (carrinho.length === 0) {
     alert("Seu carrinho está vazio.");
@@ -195,39 +222,42 @@ function enviarCarrinhoWhatsApp() {
   window.open(`https://wa.me/5591985144347?text=${msg}`, "_blank");
 }
 
-/* ================= FILTROS E BUSCA ================= */
 function buscarProdutos(){
   const texto = document.getElementById("buscar").value.toLowerCase();
   const cards = document.querySelectorAll(".produto");
-
-  cards.forEach(card => {
+  cards.forEach(card=>{
     const nome = card.querySelector("h3").innerText.toLowerCase();
     if(nome.includes(texto)){
-      card.style.display="block";
-    } else {
+      card.style.display="flex";
+    }else{
       card.style.display="none";
     }
   });
 }
 
 function filtrarCategoria(categoria){
-  if(categoria === "Todos"){
-    renderizarProdutos();
-    return;
-  }
+    if(categoria==="Todos"){
+        renderizarProdutos();
+        return;
+    }
+    lista.innerHTML="";
+    produtos
+    .filter(p=>p.categoria===categoria)
+    .forEach((p,index)=>{
+        let img=p.imagens || [p.imagem];
+        const estaFavoritado = favoritos.includes(p.nome) ? "favoritado" : "";
+        const iconeCoracao = favoritos.includes(p.nome) ? "fa-solid fa-heart" : "fa-regular fa-heart";
 
-  lista.innerHTML = "";
-  produtos
-    .filter(p => p.categoria === categoria)
-    .forEach((p, index) => {
-      let img = p.imagens || [p.imagem];
-      lista.innerHTML += `
+        lista.innerHTML+=`
         <div class="produto">
+            <button class="btn-favorito ${estaFavoritado}" onclick="toggleFavorito('${p.nome}', this)">
+              <i class="${iconeCoracao}"></i>
+            </button>
             <img src="${img[0]}" onclick="abrirModal(${produtos.indexOf(p)})">
             <h3>${p.nome}</h3>
             <p>${p.preco}</p>
             <button onclick="abrirModal(${produtos.indexOf(p)})">Comprar</button>
         </div>
-      `;
+        `;
     });
 }
