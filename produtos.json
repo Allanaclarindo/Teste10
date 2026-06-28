@@ -10,7 +10,7 @@
   },
   {
     "nome": "Conjunto Iris",
-    "categoria: "Conjuntos",
+    "categoria": "Conjuntos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/conjunto-iris.jpg",
@@ -19,7 +19,7 @@
   },
   {
     "nome": "Conjunto Alfaiataria",
-    "categoria: "Conjuntos",
+    "categoria": "Conjuntos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/conjunto-alfaiataria.jpg",
@@ -28,43 +28,43 @@
   },
   {
     "nome": "Vestido Alfaiataria",
-    "categoria: "Vestidos",
+    "categoria": "Vestidos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/vestido-alfaiataria.jpg",
     "cores": "Lilás, Branco",
     "tamanhos": "P, M, G"
   },
-    {
+  {
     "nome": "Conjunto Raiane",
-      "categoria: "Vestidos",
+    "categoria": "Vestidos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/conjunto-raiane.jpg",
     "cores": "Lilás, Branco, Amarelo",
     "tamanhos": "P, M, G"
-    },
-    {
+  },
+  {
     "nome": "vestido tule",
-      "categoria": "Vestidos",
+    "categoria": "Vestidos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/vestido-tule.jpg",
     "cores": "Lilás, Rosa, Amarelo",
     "tamanhos": "P, M, G"
-    },
-   {
+  },
+  {
     "nome": "vestido Bombom",
-     "categoria: "Vestidos",
+    "categoria": "Vestidos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/vestido-bombom.jpg",
     "cores": "Lilás, Azul, Amarelo",
     "tamanhos": "P, M, G"
-    },
+  },
   {
     "nome": "Conjunto Allana",
-    "categoria: "Conjunto",
+    "categoria": "Conjuntos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/conjunto-allana.jpg",
@@ -73,7 +73,7 @@
   },
   {
     "nome": "Top solange",
-    "categoria: "Tops",
+    "categoria": "Tops",
     "preco": "R$ 45,00",
     "valor": 44.99,
     "imagem": "imagens/top-solange.jpg",
@@ -82,7 +82,7 @@
   },
   {
     "nome": "Macaquinho Bia",
-    "categoria" "Macaquinhos",
+    "categoria": "Macaquinhos",
     "preco": "R$ 69,99",
     "valor": 69.99,
     "imagem": "imagens/macaquinho-bia.jpg",
@@ -107,27 +107,27 @@
     "cores": "Lilás, Azul, Amarelo",
     "tamanhos": "P, M, G"
   },
-   {
+  {
     "nome": "Blusa Adidas - Dry Fit",
-     "categoria": "Blusas",
+    "categoria": "Blusas",
     "preco": "R$ 38,99",
     "valor": 38.99,
     "imagem": "imagens/blusa-adidas-dry-fit.jpg",
     "cores": "Preto, Azul, Branco, Laranja",
     "tamanhos": "P, M, G"
-   }, 
-    {
+  },
+  {
     "nome": "shorts Tecido Duplo",
-      "categoria": "Shorts",
+    "categoria": "Shorts",
     "preco": "R$ 34,99",
     "valor": 34.99,
     "imagem": "imagens/shorts-tecido-duplo.jpg",
     "cores": "Rosa, Azul, Branco",
     "tamanhos": "P, M, G"
   },
-   {
+  {
     "nome": "Blusa Com Ziper",
-     "categoria": "Blusas",
+    "categoria": "Blusas",
     "preco": "R$ 64,99",
     "valor": 64.99,
     "imagem": "imagens/blusa-com-ziper.jpg",
@@ -139,31 +139,31 @@
     "categoria": "Macaquinhos",
     "preco": "R$ 64,99",
     "valor": 64.99,
-    "imagens": [ 
-     "imagens/macaquinho-keury.jpg",
+    "imagens": [
+      "imagens/macaquinho-keury.jpg",
       "imagens/macaquinho-keury-2.jpg"
     ],
     "cores": "Rosa, Azul, Verde, Preto, Amarelo",
     "tamanhos": "P, M, G"
   },
-    {
+  {
     "nome": "Top poliamida",
-      "categoria": "Tops",
+    "categoria": "Tops",
     "preco": "R$ 38,99",
     "valor": 38.99,
     "imagem": "imagens/top-poliamida-sem.jpg",
     "cores": "Marron, Azul, Branco, Preto",
     "tamanhos": "P, M, G"
   },
-    {
+  {
     "nome": "Cropped Brasileiríssima",
-      "categoria": "Blusas",
+    "categoria": "Blusas",
     "preco": "R$ 78,99",
     "valor": 78.99,
     "imagem": "imagens/cropped-brasileirissima2.jpg",
     "cores": "Azul, Branco, Preto",
     "tamanhos": "P, M, G"
-    },
+  },
   {
     "nome": "Top Brasileiríssima",
     "categoria": "Tops",
@@ -173,9 +173,9 @@
     "cores": "Azul, Verde, Amarelo",
     "tamanhos": "P, M, G"
   },
-   {
+  {
     "nome": "Top Brasileiríssima",
-     "categoria": " Tops",
+    "categoria": "Tops",
     "preco": "R$ 78,99",
     "valor": 78.99,
     "imagem": "imagens/top-brasileirissima3.jpg",
@@ -191,33 +191,33 @@
     "cores": "Lilás, Branco",
     "tamanhos": "P, M, G"
   },
-    {
+  {
     "nome": "Short duplo Adidas",
-      "categoria": "Shorts",
+    "categoria": "Shorts",
     "preco": "R$ 45,90",
     "valor": 45.90,
     "imagem": "imagens/short-duplo-adidas.jpg",
     "cores": "Lilás, Rosa, Amarelo, Verde",
     "tamanhos": "P, M, G"
-    },
-    {
+  },
+  {
     "nome": "Regata duda",
-      "categoria": "Blusas",
+    "categoria": "Blusas",
     "preco": "R$ 34,90",
     "valor": 34.90,
     "imagem": "imagens/regata-duda.jpg",
     "cores": "Lilás, Rosa, Amarelo",
     "tamanhos": "P, M, G"
-    },
-   {
+  },
+  {
     "nome": "Macaquinho Mel",
-     "categoria": "Macaquinhos",
+    "categoria": "Macaquinhos",
     "preco": "R$ 64,90",
     "valor": 64.90,
     "imagem": "imagens/macaquinho-mel.jpg",
     "cores": "Rosa, Azul, Preto",
     "tamanhos": "P, M, G"
-    },
+  },
   {
     "nome": "Macaquinho Hanna",
     "categoria": "Macaquinhos",
@@ -238,7 +238,7 @@
   },
   {
     "nome": "Jaqueta Corta Vento",
-    "categoria: "jaquetas",
+    "categoria": "jaquetas",
     "preco": "R$ 59,99",
     "valor": 59.99,
     "imagem": "imagens/jaqueta-corta-vento.jpg",
@@ -247,35 +247,34 @@
   },
   {
     "nome": "Cropped Coração",
-    "categoria: "Blusa",
+    "categoria": "Blusas",
     "preco": "R$ 78,99",
     "valor": 78.99,
-    "imagens": [ 
-     "imagens/cropped-coracao.jpg",
+    "imagens": [
+      "imagens/cropped-coracao.jpg",
       "imagens/cropped-coracao-2.jpg"
     ],
-    "cores": "Azul, Amarelo",
+    "colors": "Azul, Amarelo",
     "tamanhos": "P, M, G"
-  
   },
   {
-  "nome": "Top Lua",
-    "categoria: "Top",
+    "nome": "Top Lua",
+    "categoria": "Tops",
     "preco": "R$ 34,90",
     "valor": 34.90,
     "imagem": "imagens/top-lua.jpg",
     "cores": "Lilás, Rosa, Amarelo",
     "tamanhos": "P, M, G"
-    },
-   {
+  },
+  {
     "nome": "Blusa Canelada",
-     "categoria: "Blusas",
+    "categoria": "Blusas",
     "preco": "R$ 54,90",
     "valor": 54.90,
     "imagem": "imagens/blusa-gringa-canelada.jpg",
     "cores": "Rosa, Azul, Preto",
     "tamanhos": "P, M, G"
-    },
+  },
   {
     "nome": "Short Canelado",
     "categoria": "Shorts",
