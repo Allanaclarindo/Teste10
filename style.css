@@ -479,3 +479,21 @@ section{
         right:0;
     }
 }
+.busca{
+  text-align:center;
+  margin:20px 0;
+}
+
+.busca input{
+  width:90%;
+  max-width:450px;
+  padding:12px;
+  border:2px solid #BFA2FF;
+  border-radius:30px;
+  font-size:16px;
+  outline:none;
+}
+
+.busca input:focus{
+  border-color:#D4AF37;
+}
