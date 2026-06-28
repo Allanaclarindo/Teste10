@@ -1,97 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Bella Flor | Moda Feminina</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Flor | Moda Feminina</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Ícones -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
+
 <header>
-  <h1>Bella Flor</h1>
-  <p>Moda Feminina</p>
+
+    <h1>Bella Flor</h1>
+    <p>Moda Feminina</p>
+
 </header>
+
 <section id="produtos">
-  <h2>Catálogo</h2>
-  <div class="busca">
-  <input
-    type="text"
-    id="buscar"
-    placeholder="🔍 Buscar produtos..."
-    onkeyup="buscarProdutos()">
-</div>
-  <div class="produtos" id="lista-produtos"></div>
+
+    <h2>Catálogo</h2>
+
+    <!-- BUSCA -->
+
+    <div class="busca">
+
+        <input
+            type="text"
+            id="buscar"
+            placeholder="🔍 Buscar produtos..."
+            onkeyup="buscarProdutos()">
+
+    </div>
+
+    <!-- FILTROS -->
+
+    <div class="filtros">
+
+        <button onclick="filtrarCategoria('Todos')">Todos</button>
+
+        <button onclick="filtrarCategoria('Vestidos')">Vestidos</button>
+
+        <button onclick="filtrarCategoria('Conjuntos')">Conjuntos</button>
+
+        <button onclick="filtrarCategoria('Tops')">Tops</button>
+
+        <button onclick="filtrarCategoria('Shorts')">Shorts</button>
+
+        <button onclick="filtrarCategoria('Blusas')">Blusas</button>
+
+        <button onclick="filtrarCategoria('Macaquinhos')">Macaquinhos</button>
+
+        <button onclick="filtrarCategoria('Jaquetas')">Jaquetas</button>
+
+    </div>
+
+    <div class="produtos" id="lista-produtos"></div>
+
 </section>
-  <div class="filtros">
 
-<button onclick="filtrarCategoria('Todos')">Todos</button>
+<!-- MODAL -->
 
-<button onclick="filtrarCategoria('Vestidos')">Vestidos</button>
-
-<button onclick="filtrarCategoria('Conjuntos')">Conjuntos</button>
-
-<button onclick="filtrarCategoria('Tops')">Tops</button>
-
-<button onclick="filtrarCategoria('Shorts')">Shorts</button>
-
-<button onclick="filtrarCategoria('Blusas')">Blusas</button>
-
-  </div>
-<!-- MODAL DO PRODUTO -->
 <div id="modal" class="modal">
-  <div class="modal-conteudo">
-    <h3 id="modal-nome"></h3>
-    <!-- O JavaScript preenche esta área -->
-    <div id="modal-imagens"></div>
-    <button onclick="fecharModal()">Fechar</button>
-  </div>
-</div>
-<!-- MODAL TELA CHEIA -->
-<div id="modal-imagem-full" style="
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:black;
-  z-index:9999;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-">
-  <img id="img-full" src="" style="max-width:100%; max-height:80%;">
-  <div id="miniaturas" style="display:flex; gap:10px; margin-top:10px;"></div>
-  <button onclick="fecharImagemFull()" style="
-    position:absolute;
-    top:20px;
-    right:20px;
-    background:white;
-    border:none;
-    padding:10px;
-    border-radius:50%;
-  ">✕</button>
-</div>
-<!-- BOTÃO DO CARRINHO -->
-<div id="carrinho-btn" onclick="abrirCarrinho()">
-  🛒 <span id="contador">0</span>
-</div>
-<!-- CARRINHO -->
-<div id="carrinho-lateral" class="carrinho">
-  <h2>🛒 Carrinho</h2>
-  <div id="itens-carrinho"></div>
-  <p id="total"></p>
-  <button onclick="enviarCarrinhoWhatsApp()">
-    <img src="imagens/whatsap.png" width="30"> Finalizar compra
-  </button>
-  <button onclick="fecharCarrinho()">
-    Fechar
-  </button>
-</div>
-<!-- BOTÃO FLUTUANTE WHATSAPP -->
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</div>
-<script src="script.js"></script>
-</body>
-</html>
 
+    <div class="modal-conteudo">
+
+        <h3 id="modal-nome"></h3>
+
+        <div id="modal-imagens"></div>
+
+        <button onclick="fecharModal()">
+
+            Fechar
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- MODAL IMAGEM -->
+
+<div id="modal-imagem-full">
+
+    <img id="img-full">
+
+    <div id="miniaturas"></div>
+
+    <button onclick="fecharImagemFull()">
+
+        ✕
+
+    </button>
+
+  </div>
