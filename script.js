@@ -177,3 +177,27 @@ function enviarCarrinhoWhatsApp() {
   );
 }
 atualizarCarrinho();
+function buscarProdutos(){
+
+  const texto = document
+    .getElementById("buscar")
+    .value
+    .toLowerCase();
+
+  const cards = document.querySelectorAll(".produto");
+
+  cards.forEach(card=>{
+
+    const nome = card.querySelector("h3")
+      .innerText
+      .toLowerCase();
+
+    if(nome.includes(texto)){
+      card.style.display="block";
+    }else{
+      card.style.display="none";
+    }
+
+  });
+
+}
