@@ -1,6 +1,7 @@
 /* ==========================================
-   CONFIGURAÇÕES GERAIS e RESET
+   BELLA FLOR - STYLE.CSS
 ========================================== */
+
 *{
     margin:0;
     padding:0;
@@ -32,53 +33,23 @@ header p{
     font-size:17px;
 }
 
-/* BUSCA E FILTROS */
-.busca-filtros {
-    padding: 25px 25px 5px 25px;
+/* CATÁLOGO e BUSCA */
+section{
+    padding:25px;
 }
 
 .busca {
-    text-align:center;
+    text-align: center;
     margin-bottom: 20px;
 }
 
 .busca input {
-    padding: 12px;
     width: 100%;
     max-width: 400px;
+    padding: 12px;
     border-radius: 8px;
     border: 1px solid #ddd;
     outline: none;
-    font-size: 15px;
-}
-
-.filtros {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
-}
-
-.filtros button {
-    padding: 8px 18px;
-    border: none;
-    background: #BFA2FF;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: .3s;
-    font-size: 14px;
-}
-
-.filtros button:hover {
-    background: #A98CF8;
-}
-
-/* SEÇÃO CATÁLOGO E GRID */
-#produtos {
-    padding: 20px;
 }
 
 #produtos h2{
@@ -88,28 +59,50 @@ header p{
     font-size:30px;
 }
 
+/* FILTROS */
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 0 25px 25px 25px;
+}
+
+.filtros button {
+    padding: 8px 16px;
+    border: none;
+    background: #BFA2FF;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.filtros button:hover {
+    background: #A98CF8;
+}
+
+/* GRID */
 .produtos{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:25px;
 }
 
-/* CARD DO PRODUTO */
+/* CARD */
 .produto{
     background:#fff;
     border-radius:18px;
     overflow:hidden;
-    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
     transition:.3s;
     padding:15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative; /* Mantém o posicionamento do coração correto */
+    position: relative; /* Base para o coração no catálogo */
 }
 
 .produto:hover{
-    transform:translateY(-5px);
+    transform:translateY(-6px);
 }
 
 .produto img{
@@ -123,17 +116,17 @@ header p{
 .produto h3{
     margin-top:15px;
     color:#6E44FF;
-    font-size:18px;
+    font-size:20px;
 }
 
 .produto p{
-    margin:10px 0;
+    margin:12px 0;
     color:#D4AF37;
-    font-size:22px;
+    font-size:24px;
     font-weight:bold;
 }
 
-/* BOTÃO DE FAVORITOS (CORAÇÃO COMPATÍVEL) */
+/* BOTÃO DE FAVORITOS (ESTILO COMPARTILHADO PARA CARD E MODAL) */
 .btn-favorito {
     position: absolute;
     top: 25px;
@@ -147,14 +140,14 @@ header p{
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     transition: 0.3s ease;
-    z-index: 10; /* Força o botão a ficar na frente da foto */
+    z-index: 15;
 }
 
 .btn-favorito i {
     font-size: 22px;
-    color: #b0b0b0; /* Cor cinza neutra para o coração vazio */
+    color: #b0b0b0;
     transition: color 0.3s ease;
 }
 
@@ -163,12 +156,11 @@ header p{
     background: #ffffff;
 }
 
-/* Quando estiver favoritado */
 .btn-favorito.favoritado i {
-    color: #ff4d4d !important; /* Força o coração a ficar vermelho */
+    color: #ff4d4d !important;
 }
 
-/* BOTÕES DO PRODUTO */
+/* BOTÕES INFERIORES */
 .produto button{
     width:100%;
     padding:12px;
@@ -200,18 +192,132 @@ header p{
 }
 
 /* ==========================================
-   CARRINHO LATERAL (Menu Deslizante)
+   MODAL DE DETALHES 
 ========================================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-conteudo {
+    background: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+    z-index: 20;
+}
+
+.fechar-modal:hover {
+    color: #ff4d4d;
+}
+
+.modal-conteudo h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 22px;
+}
+
+/* Container de imagem relativo dentro do modal para travar o coração nele */
+.modal-media-container {
+    position: relative;
+    width: 100%;
+}
+
+.modal-media-container .btn-favorito {
+    top: 15px;
+    right: 15px;
+}
+
+.modal-conteudo label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #555;
+}
+
+.modal-conteudo select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+.modal-conteudo button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #D4AF37;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+/* ==========================================
+   CARRINHO LATERAL
+========================================== */
+#carrinho-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background: #7B5CFF;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+
+#contador {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: #ff4d4d;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 .carrinho {
     position: fixed;
-    top: 0;
-    right: -340px; 
-    width: 320px;
-    height: 100%;
+    top: 0; right: -340px;
+    width: 320px; height: 100%;
     background: white;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.15);
-    transition: right 0.3s ease;
-    z-index: 10000;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: 0.3s right ease;
+    z-index: 2000;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -221,19 +327,10 @@ header p{
     right: 0;
 }
 
-.carrinho-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-}
-
 #itens-carrinho {
     flex: 1;
     overflow-y: auto;
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .item-carrinho {
@@ -241,233 +338,4 @@ header p{
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 10px;
-    border-left: 4px solid #7B5CFF;
-}
-
-#total {
-    font-size: 16px;
-    line-height: 1.5;
-    background: #f5f5f5;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.btn-finalizar {
-    background: #25D366;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 14px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    margin-bottom: 10px;
-}
-
-.btn-fechar {
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* ==========================================
-   MODAL DE DETALHES (DESIGN MODERNO)
-========================================== */
-.modal {
-    display: none; 
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 10050;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    width: 100%;
-    max-width: 420px;
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-.fechar-modal {
-    position: absolute;
-    top: 12px;
-    right: 18px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #999;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-.fechar-modal:hover {
-    color: #ff4d4d;
-}
-
-#modal-nome {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 15px;
-    padding-right: 25px;
-    font-weight: bold;
-}
-
-#modal-imagens img#img-principal {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 15px;
-}
-
-#modal-imagens label {
-    display: block;
-    font-weight: bold;
-    margin-top: 12px;
-    margin-bottom: 5px;
-    color: #555;
-    font-size: 14px;
-}
-
-#modal-imagens select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background: #f9f9f9;
-    font-size: 15px;
-    color: #444;
-    outline: none;
-    margin-bottom: 5px;
-}
-
-#modal-imagens button {
-    width: 100%;
-    background: #D4AF37;
-    color: white;
-    border: none;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: 0.3s;
-}
-
-#modal-imagens button:hover {
-    background: #bfa030;
-}
-
-.modal-btn-fechar-baixo {
-    width: 100%;
-    background: #e0e0e0 !important;
-    color: #555 !important;
-    margin-top: 10px !important;
-    padding: 10px !important;
-    font-size: 14px !important;
-}
-
-.miniaturas-container {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-}
-
-.miniaturas-container img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    cursor: pointer;
-    border-radius: 6px;
-    border: 2px solid transparent;
-    transition: 0.2s;
-}
-
-.miniaturas-container img:hover {
-    border-color: #BFA2FF;
-}
-
-/* ==========================================
-   CARRINHO FIXO NO TOPO DA TELA
-========================================== */
-.icone-carrinho-topo {
-    position: fixed;
-    top: 20px;          
-    right: 20px;         
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    background: #7B5CFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    z-index: 9999;      
-    transition: transform 0.2s ease;
-}
-
-.icone-carrinho-topo:hover {
-    transform: scale(1.08);
-}
-
-#contador {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    background: #FF3B30;
-    color: white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
-
-/* ==========================================
-   WHATSAPP FIXO NO RODAPÉ DA TELA
-========================================== */
-.icone-whatsapp-fixo {
-    position: fixed;
-    bottom: 25px;       
-    right: 25px;        
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #25D366;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    z-index: 9999;
-    text-decoration: none;
-    transition: transform 0.2s ease;
-}
-
-.icone-whatsapp-fixo:hover {
-    transform: scale(1.08);
-}
+   }
