@@ -169,21 +169,20 @@ header p{
 .carrinho {
     position: fixed;
     top: 0;
-    right: -340px; /* Inicia completamente escondido fora da tela */
+    right: -340px; 
     width: 320px;
     height: 100%;
     background: white;
     box-shadow: -5px 0 15px rgba(0,0,0,0.15);
-    transition: right 0.3s ease; /* Transição de deslize suave */
-    z-index: 10000; /* Fica sobreposto a tudo */
+    transition: right 0.3s ease;
+    z-index: 10000;
     padding: 20px;
     display: flex;
     flex-direction: column;
 }
 
-/* Ativado via JavaScript */
 .carrinho.ativo {
-    right: 0; /* Entra na tela deslizando */
+    right: 0;
 }
 
 .carrinho-header {
@@ -276,62 +275,71 @@ header p{
 }
 
 /* ==========================================
-   BOTÕES FLUTUANTES (EMPILHAMENTO FIXO)
+   CARRINHO FIXO NO TOPO DA TELA
 ========================================== */
-.botoes-flutuantes {
+.icone-carrinho-topo {
     position: fixed;
-    bottom: 25px;       
-    right: 25px;        
-    display: flex;
-    flex-direction: column; /* Força um elemento em cima do outro */
-    gap: 15px;          /* Espaço exato entre eles */
-    z-index: 9999;      /* Mantém à frente de tudo na rolagem */
-}
-
-.icone-carrinho-fixo, .icone-whatsapp-fixo {
-    width: 60px;
-    height: 60px;
+    top: 20px;          /* Fixado no topo */
+    right: 20px;         /* No canto direito */
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
+    background: #7B5CFF;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
+    font-size: 24px;
     color: white;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    z-index: 9999;      /* Fica em cima de tudo na rolagem */
     transition: transform 0.2s ease;
-    position: relative;
 }
 
-/* Estilização do Carrinho (Botão de cima) */
-.icone-carrinho-fixo {
-    background: #7B5CFF;
-}
-
-/* Estilização do WhatsApp (Botão de baixo) */
-.icone-whatsapp-fixo {
-    background: #25D366;
-    text-decoration: none;
-}
-
-.icone-carrinho-fixo:hover, .icone-whatsapp-fixo:hover {
+.icone-carrinho-topo:hover {
     transform: scale(1.08);
 }
 
-/* Contador Vermelho de Itens em cima do ícone do Carrinho */
+/* Contador Vermelho de Itens */
 #contador {
     position: absolute;
-    top: -3px;
-    right: -3px;
+    top: -2px;
+    right: -2px;
     background: #FF3B30;
     color: white;
     border-radius: 50%;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     font-size: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* ==========================================
+   WHATSAPP FIXO NO RODAPÉ DA TELA
+========================================== */
+.icone-whatsapp-fixo {
+    position: fixed;
+    bottom: 25px;       /* Fixado embaixo */
+    right: 25px;        /* No canto direito */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 9999;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.icone-whatsapp-fixo:hover {
+    transform: scale(1.08);
 }
