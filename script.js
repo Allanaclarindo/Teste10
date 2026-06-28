@@ -3,6 +3,7 @@ let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 let produtoSelecionado = null;
 let frete = 0;
 const lista = document.getElementById("lista-produtos");
+
 /* ================= PRODUTOS ================= */
 fetch("produtos.json")
   .then(res => res.json())
@@ -10,8 +11,11 @@ fetch("produtos.json")
     produtos = data;
     renderizarProdutos();
     atualizarCarrinho();
-  });
+  })
+  .catch(err => console.error("Erro ao carregar o JSON:", err));
+
 function renderizarProdutos() {
+  if (!lista) return;
   lista.innerHTML = "";
   produtos.forEach((p, index) => {
     const img = p.imagens || [p.imagem];
@@ -26,6 +30,7 @@ function renderizarProdutos() {
     `;
   });
 }
+
 /* ================= MODAL ================= */
 function abrirModal(index) {
   produtoSelecionado = produtos[index];
@@ -34,10 +39,11 @@ function abrirModal(index) {
   const imagens = produtoSelecionado.imagens || [produtoSelecionado.imagem];
   const cores = produtoSelecionado.cores
     ? produtoSelecionado.cores.split(",").map(c => c.trim())
-    : ["Ãnica"];
+    : ["Única"];
   const tamanhos = produtoSelecionado.tamanhos
     ? produtoSelecionado.tamanhos.split(",").map(t => t.trim())
-    : ["Ãnico"];
+    : ["Único"];
+    
   document.getElementById("modal-imagens").innerHTML = `
     <img id="img-principal"
          src="${imagens[0]}"
@@ -62,12 +68,15 @@ function abrirModal(index) {
     </div>
   `;
 }
+
 function trocarImagem(src) {
   document.getElementById("img-principal").src = src;
 }
+
 function fecharModal() {
   document.getElementById("modal").style.display = "none";
 }
+
 /* ================= CARRINHO ================= */
 function adicionarAoCarrinho(index) {
   const p = produtos[index];
@@ -75,11 +84,12 @@ function adicionarAoCarrinho(index) {
     nome: p.nome,
     preco: p.valor,
     quantidade: 1,
-    cor: p.cores ? p.cores.split(",")[0].trim() : "Ãnica",
-    tamanho: p.tamanhos ? p.tamanhos.split(",")[0].trim() : "Ãnico"
+    cor: p.cores ? p.cores.split(",")[0].trim() : "Única",
+    tamanho: p.tamanhos ? p.tamanhos.split(",")[0].trim() : "Único"
   });
   atualizarCarrinho();
 }
+
 function adicionarDoModal() {
   const cor = document.getElementById("cor").value;
   const tamanho = document.getElementById("tamanho").value;
@@ -93,11 +103,13 @@ function adicionarDoModal() {
   atualizarCarrinho();
   fecharModal();
 }
+
 /* ================= CONTROLES ================= */
 function aumentar(i) {
   carrinho[i].quantidade++;
   atualizarCarrinho();
 }
+
 function diminuir(i) {
   if (carrinho[i].quantidade > 1) {
     carrinho[i].quantidade--;
@@ -106,26 +118,32 @@ function diminuir(i) {
   }
   atualizarCarrinho();
 }
+
 function remover(i) {
   carrinho.splice(i, 1);
   atualizarCarrinho();
 }
-/* ================= CARRINHO ================= */
+
 function abrirCarrinho() {
   document.getElementById("carrinho-lateral").classList.add("ativo");
 }
+
 function fecharCarrinho() {
   document.getElementById("carrinho-lateral").classList.remove("ativo");
 }
+
 /* ================= FRETE ================= */
 function calcularFrete() {
   frete = 10.00;
 }
+
 /* ================= ATUALIZAR ================= */
 function atualizarCarrinho() {
   const box = document.getElementById("itens-carrinho");
+  if (!box) return;
   box.innerHTML = "";
   let subtotal = 0;
+  
   carrinho.forEach((item, i) => {
     subtotal += item.preco * item.quantidade;
     box.innerHTML += `
@@ -134,15 +152,17 @@ function atualizarCarrinho() {
         Cor: ${item.cor}<br>
         Tamanho: ${item.tamanho}<br>
         R$ ${item.preco.toFixed(2)}<br><br>
-        <button onclick="diminuir(${i})">â</button>
+        <button onclick="diminuir(${i})">−</button>
         <strong>${item.quantidade}</strong>
         <button onclick="aumentar(${i})">+</button>
-        <button onclick="remover(${i})">ðï¸</button>
+        <button onclick="remover(${i})">🗑️</button>
       </div>
     `;
   });
+  
   calcularFrete();
   const totalFinal = subtotal + frete;
+  
   document.getElementById("total").innerHTML = `
     <b>Subtotal:</b> R$ ${subtotal.toFixed(2)}<br>
     <b>Frete:</b> R$ ${frete.toFixed(2)}<br>
@@ -151,17 +171,18 @@ function atualizarCarrinho() {
   document.getElementById("contador").innerText = carrinho.length;
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
+
 /* ================= WHATSAPP ================= */
 function enviarCarrinhoWhatsApp() {
   if (carrinho.length === 0) {
-    alert("Seu carrinho estÃ¡ vazio.");
+    alert("Seu carrinho está vazio.");
     return;
   }
   let subtotal = 0;
-  let msg = "ð *PEDIDO BELLA FLOR*%0A%0A";
+  let msg = "🛍️ *PEDIDO BELLA FLOR*%0A%0A";
   carrinho.forEach(item => {
     subtotal += item.preco * item.quantidade;
-    msg += `â¢ ${item.nome}%0A`;
+    msg += `• ${item.nome}%0A`;
     msg += `Cor: ${item.cor}%0A`;
     msg += `Tamanho: ${item.tamanho}%0A`;
     msg += `Quantidade: ${item.quantidade}%0A`;
@@ -169,71 +190,44 @@ function enviarCarrinhoWhatsApp() {
   });
   calcularFrete();
   const totalFinal = subtotal + frete;
-  msg += `ð Frete: R$ ${frete.toFixed(2)}%0A`;
-  msg += `ð° Total: R$ ${totalFinal.toFixed(2)}`;
-  window.open(
-    `https://wa.me/5591985144347?text=${msg}`,
-    "_blank"
-  );
+  msg += `🚚 Frete: R$ ${frete.toFixed(2)}%0A`;
+  msg += `💰 Total: R$ ${totalFinal.toFixed(2)}`;
+  window.open(`https://wa.me/5591985144347?text=${msg}`, "_blank");
 }
-atualizarCarrinho();
+
+/* ================= FILTROS E BUSCA ================= */
 function buscarProdutos(){
-
-  const texto = document
-    .getElementById("buscar")
-    .value
-    .toLowerCase();
-
+  const texto = document.getElementById("buscar").value.toLowerCase();
   const cards = document.querySelectorAll(".produto");
 
-  cards.forEach(card=>{
-
-    const nome = card.querySelector("h3")
-      .innerText
-      .toLowerCase();
-
+  cards.forEach(card => {
+    const nome = card.querySelector("h3").innerText.toLowerCase();
     if(nome.includes(texto)){
       card.style.display="block";
-    }else{
+    } else {
       card.style.display="none";
     }
-
   });
-
 }
+
 function filtrarCategoria(categoria){
+  if(categoria === "Todos"){
+    renderizarProdutos();
+    return;
+  }
 
-    if(categoria==="Todos"){
-        renderizarProdutos();
-        return;
-    }
-
-    lista.innerHTML="";
-
-    produtos
-    .filter(p=>p.categoria===categoria)
-    .forEach((p,index)=>{
-
-        let img=p.imagens || [p.imagem];
-
-        lista.innerHTML+=`
-
+  lista.innerHTML = "";
+  produtos
+    .filter(p => p.categoria === categoria)
+    .forEach((p, index) => {
+      let img = p.imagens || [p.imagem];
+      lista.innerHTML += `
         <div class="produto">
-
             <img src="${img[0]}" onclick="abrirModal(${produtos.indexOf(p)})">
-
             <h3>${p.nome}</h3>
-
             <p>${p.preco}</p>
-
-            <button onclick="abrirModal(${produtos.indexOf(p)})">
-            Comprar
-            </button>
-
+            <button onclick="abrirModal(${produtos.indexOf(p)})">Comprar</button>
         </div>
-
-        `;
-
+      `;
     });
-
 }
