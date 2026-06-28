@@ -12,6 +12,13 @@
 </header>
 <section id="produtos">
   <h2>Catálogo</h2>
+  <div class="busca">
+  <input
+    type="text"
+    id="buscar"
+    placeholder="🔍 Buscar produtos..."
+    onkeyup="buscarProdutos()">
+</div>
   <div class="produtos" id="lista-produtos"></div>
 </section>
 <!-- MODAL DO PRODUTO -->
@@ -72,10 +79,4 @@
 <script src="script.js"></script>
 </body>
 </html>
-<div class="busca">
-  <input
-    type="text"
-    id="buscar"
-    placeholder="🔍 Buscar produtos..."
-    onkeyup="buscarProdutos()">
-</div>
+
