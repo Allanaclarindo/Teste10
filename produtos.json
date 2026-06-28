@@ -1,6 +1,7 @@
 [
   {
     "nome": "Vestido Luna",
+    "categoria": "Vestidos",
     "preco": "R$ 99,90",
     "valor": 99.90,
     "imagem": "imagens/vestido-luna.jpg",
@@ -9,6 +10,7 @@
   },
   {
     "nome": "Conjunto Iris",
+    "categoria: "Conjuntos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/conjunto-iris.jpg",
@@ -17,6 +19,7 @@
   },
   {
     "nome": "Conjunto Alfaiataria",
+    "categoria: "Conjuntos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/conjunto-alfaiataria.jpg",
@@ -25,6 +28,7 @@
   },
   {
     "nome": "Vestido Alfaiataria",
+    "categoria: "Vestidos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/vestido-alfaiataria.jpg",
@@ -33,6 +37,7 @@
   },
     {
     "nome": "Conjunto Raiane",
+      "categoria: "Vestidos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/conjunto-raiane.jpg",
@@ -41,6 +46,7 @@
     },
     {
     "nome": "vestido tule",
+      "categoria": "Vestidos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/vestido-tule.jpg",
@@ -49,6 +55,7 @@
     },
    {
     "nome": "vestido Bombom",
+     "categoria: "Vestidos",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/vestido-bombom.jpg",
@@ -57,6 +64,7 @@
     },
   {
     "nome": "Conjunto Allana",
+    "categoria: "Conjunto",
     "preco": "R$ 79,90",
     "valor": 79.90,
     "imagem": "imagens/conjunto-allana.jpg",
@@ -65,6 +73,7 @@
   },
   {
     "nome": "Top solange",
+    "categoria: "Tops",
     "preco": "R$ 45,00",
     "valor": 44.99,
     "imagem": "imagens/top-solange.jpg",
@@ -73,6 +82,7 @@
   },
   {
     "nome": "Macaquinho Bia",
+    "categoria" "Macaquinhos",
     "preco": "R$ 69,99",
     "valor": 69.99,
     "imagem": "imagens/macaquinho-bia.jpg",
@@ -81,6 +91,7 @@
   },
   {
     "nome": "Conjunto Amanda",
+    "categoria": "Conjuntos",
     "preco": "R$ 68,00",
     "valor": 67.99,
     "imagem": "imagens/conjunto-amanda.jpg",
@@ -89,6 +100,7 @@
   },
   {
     "nome": "shorts Nike",
+    "categoria": "Shorts",
     "preco": "R$ 54,99",
     "valor": 54.99,
     "imagem": "imagens/shorts-nike.jpg",
@@ -97,6 +109,7 @@
   },
    {
     "nome": "Blusa Adidas - Dry Fit",
+     "categoria": "Blusas",
     "preco": "R$ 38,99",
     "valor": 38.99,
     "imagem": "imagens/blusa-adidas-dry-fit.jpg",
@@ -105,6 +118,7 @@
    }, 
     {
     "nome": "shorts Tecido Duplo",
+      "categoria": "Shorts",
     "preco": "R$ 34,99",
     "valor": 34.99,
     "imagem": "imagens/shorts-tecido-duplo.jpg",
@@ -113,6 +127,7 @@
   },
    {
     "nome": "Blusa Com Ziper",
+     "categoria": "Blusas",
     "preco": "R$ 64,99",
     "valor": 64.99,
     "imagem": "imagens/blusa-com-ziper.jpg",
@@ -121,6 +136,7 @@
   },
   {
     "nome": "Macaquinho keury",
+    "categoria": "Macaquinhos",
     "preco": "R$ 64,99",
     "valor": 64.99,
     "imagens": [ 
@@ -132,6 +148,7 @@
   },
     {
     "nome": "Top poliamida",
+      "categoria": "Tops",
     "preco": "R$ 38,99",
     "valor": 38.99,
     "imagem": "imagens/top-poliamida-sem.jpg",
@@ -140,6 +157,7 @@
   },
     {
     "nome": "Cropped Brasileiríssima",
+      "categoria": "Blusas",
     "preco": "R$ 78,99",
     "valor": 78.99,
     "imagem": "imagens/cropped-brasileirissima2.jpg",
@@ -148,6 +166,7 @@
     },
   {
     "nome": "Top Brasileiríssima",
+    "categoria": "Tops",
     "preco": "R$ 78,99",
     "valor": 78.99,
     "imagem": "imagens/top-brasileirissima.jpg",
@@ -156,6 +175,7 @@
   },
    {
     "nome": "Top Brasileiríssima",
+     "categoria": " Tops",
     "preco": "R$ 78,99",
     "valor": 78.99,
     "imagem": "imagens/top-brasileirissima3.jpg",
@@ -164,6 +184,7 @@
   },
   {
     "nome": "Short-hadcore Poliamida",
+    "categoria": "Shorts",
     "preco": "R$ 64,90",
     "valor": 64.90,
     "imagem": "imagens/short-hadcore-cosalto-poliamida.jpg",
@@ -172,6 +193,7 @@
   },
     {
     "nome": "Short duplo Adidas",
+      "categoria": "Shorts",
     "preco": "R$ 45,90",
     "valor": 45.90,
     "imagem": "imagens/short-duplo-adidas.jpg",
@@ -180,6 +202,7 @@
     },
     {
     "nome": "Regata duda",
+      "categoria": "Blusas",
     "preco": "R$ 34,90",
     "valor": 34.90,
     "imagem": "imagens/regata-duda.jpg",
@@ -188,6 +211,7 @@
     },
    {
     "nome": "Macaquinho Mel",
+     "categoria": "Macaquinhos",
     "preco": "R$ 64,90",
     "valor": 64.90,
     "imagem": "imagens/macaquinho-mel.jpg",
@@ -196,6 +220,7 @@
     },
   {
     "nome": "Macaquinho Hanna",
+    "categoria": "Macaquinhos",
     "preco": "R$ 64,90",
     "valor": 64.90,
     "imagem": "imagens/macaquinho-hanna.jpg",
@@ -204,6 +229,7 @@
   },
   {
     "nome": "Jaqueta UV Poliamida 50 FPS",
+    "categoria": "jaquetas",
     "preco": "R$ 65,00",
     "valor": 65.00,
     "imagem": "imagens/jaqueta-uv-poliamida.jpg",
@@ -212,6 +238,7 @@
   },
   {
     "nome": "Jaqueta Corta Vento",
+    "categoria: "jaquetas",
     "preco": "R$ 59,99",
     "valor": 59.99,
     "imagem": "imagens/jaqueta-corta-vento.jpg",
@@ -220,6 +247,7 @@
   },
   {
     "nome": "Cropped Coração",
+    "categoria: "Blusa",
     "preco": "R$ 78,99",
     "valor": 78.99,
     "imagens": [ 
@@ -232,6 +260,7 @@
   },
   {
   "nome": "Top Lua",
+    "categoria: "Top",
     "preco": "R$ 34,90",
     "valor": 34.90,
     "imagem": "imagens/top-lua.jpg",
@@ -240,6 +269,7 @@
     },
    {
     "nome": "Blusa Canelada",
+     "categoria: "Blusas",
     "preco": "R$ 54,90",
     "valor": 54.90,
     "imagem": "imagens/blusa-gringa-canelada.jpg",
@@ -248,6 +278,7 @@
     },
   {
     "nome": "Short Canelado",
+    "categoria": "Shorts",
     "preco": "R$ 54,90",
     "valor": 54.90,
     "imagem": "imagens/short-canelado.jpg",
