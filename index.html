@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bella Flor - Moda Feminina</title>
+    <title>Bella Flor | Moda Feminina</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
@@ -13,6 +13,11 @@
         <h1>Bella Flor</h1>
         <p>Moda Feminina</p>
     </header>
+
+    <div id="carrinho-btn" class="icone-carrinho-topo" onclick="abrirCarrinho()">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="contador">0</span>
+    </div>
 
     <section class="busca-filtros">
         <div class="busca">
@@ -65,16 +70,9 @@
         </div>
     </div>
 
-    <div class="botoes-flutuantes">
-        <div class="icone-carrinho-fixo" onclick="abrirCarrinho()">
-            <i class="fas fa-shopping-cart"></i>
-            <span id="contador">0</span>
-        </div>
-        
-        <a href="https://wa.me/5591985144347" target="_blank" class="icone-whatsapp-fixo">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
+    <a href="https://wa.me/5591985144347" target="_blank" class="icone-whatsapp-fixo">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="script.js"></script>
 </body>
