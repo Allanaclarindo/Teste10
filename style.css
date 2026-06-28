@@ -1,8 +1,6 @@
-/* ==========================
-   BELLA FLOR - STYLE.CSS
-   PARTE 1
-========================== */
-
+/* ==========================================
+   CONFIGURAÇÕES GERAIS e RESET
+========================================== */
 *{
     margin:0;
     padding:0;
@@ -16,7 +14,6 @@ body{
 }
 
 /* HEADER */
-
 header{
     background:linear-gradient(135deg,#DCCBFF,#BFA2FF);
     color:#fff;
@@ -35,10 +32,53 @@ header p{
     font-size:17px;
 }
 
-/* CATÁLOGO */
+/* BUSCA E FILTROS */
+.busca-filtros {
+    padding: 25px 25px 5px 25px;
+}
 
-section{
-    padding:25px;
+.busca {
+    text-align:center;
+    margin-bottom: 20px;
+}
+
+.busca input {
+    padding: 12px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 15px;
+}
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.filtros button {
+    padding: 8px 18px;
+    border: none;
+    background: #BFA2FF;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+    font-size: 14px;
+}
+
+.filtros button:hover {
+    background: #A98CF8;
+}
+
+/* SEÇÃO CATÁLOGO E GRID */
+#produtos {
+    padding: 20px;
 }
 
 #produtos h2{
@@ -48,27 +88,27 @@ section{
     font-size:30px;
 }
 
-/* GRID */
-
 .produtos{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:25px;
 }
 
-/* CARD */
-
+/* CARD DO PRODUTO */
 .produto{
     background:#fff;
     border-radius:18px;
     overflow:hidden;
-    box-shadow:0 5px 18px rgba(0,0,0,.12);
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
     transition:.3s;
     padding:15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .produto:hover{
-    transform:translateY(-6px);
+    transform:translateY(-5px);
 }
 
 .produto img{
@@ -82,18 +122,17 @@ section{
 .produto h3{
     margin-top:15px;
     color:#6E44FF;
-    font-size:20px;
+    font-size:18px;
 }
 
 .produto p{
-    margin:12px 0;
+    margin:10px 0;
     color:#D4AF37;
-    font-size:24px;
+    font-size:22px;
     font-weight:bold;
 }
 
-/* BOTÕES */
-
+/* BOTÕES DO PRODUTO */
 .produto button{
     width:100%;
     padding:12px;
@@ -123,17 +162,129 @@ section{
 .produto button:last-of-type:hover{
     background:#1FB458;
 }
+
 /* ==========================================
-   BOTÕES FLUTUANTES (WHATSAPP E CARRINHO)
+   CARRINHO LATERAL (Escondido e Deslizante)
+========================================== */
+.carrinho {
+    position: fixed;
+    top: 0;
+    right: -340px; /* Começa escondido para fora da tela */
+    width: 320px;
+    height: 100%;
+    background: white;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+    transition: right 0.3s ease;
+    z-index: 10000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.carrinho.ativo {
+    right: 0; /* Desliza para dentro da tela */
+}
+
+.carrinho-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+#itens-carrinho {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.item-carrinho {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid #7B5CFF;
+}
+
+#total {
+    font-size: 16px;
+    line-height: 1.5;
+    background: #f5f5f5;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.btn-finalizar {
+    background: #25D366;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.btn-fechar {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ==========================================
+   MODAL DE DETALHES
+========================================== */
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 10050;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 32px;
+    cursor: pointer;
+    color: #888;
+}
+
+/* ==========================================
+   BOTÕES FLUTUANTES (CARRINHO EM CIMA / WHATSAPP EM BAIXO)
 ========================================== */
 .botoes-flutuantes {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 25px;       
+    right: 25px;        
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 999;
+    flex-direction: column; 
+    gap: 15px;          
+    z-index: 9999;      /* Fica acima de tudo no catálogo */
 }
 
 .icone-carrinho-fixo, .icone-whatsapp-fixo {
@@ -143,112 +294,43 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    font-size: 26px;
     color: white;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: transform 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: transform 0.2s ease;
     position: relative;
 }
 
+/* Cor do botão superior (Carrinho) */
 .icone-carrinho-fixo {
     background: #7B5CFF;
 }
 
+/* Cor do botão inferior (WhatsApp) */
 .icone-whatsapp-fixo {
     background: #25D366;
     text-decoration: none;
 }
 
 .icone-carrinho-fixo:hover, .icone-whatsapp-fixo:hover {
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
+/* Indicador Vermelho de Notificação de Itens */
 #contador {
     position: absolute;
-    top: -5px;
-    right: -5px;
+    top: -3px;
+    right: -3px;
     background: #FF3B30;
     color: white;
     border-radius: 50%;
     width: 22px;
     height: 22px;
-    font-size: 12px;
+    font-size: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-}
-
-/* Ajustes Extras do Modal no CSS */
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-}
-.fechar-modal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    cursor: pointer;
-}
-.btn-fechar {
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.btn-finalizar {
-    background: #25D366;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-
-/* Ajustes Extras do Modal no CSS */
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-}
-.fechar-modal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    cursor: pointer;
-}
-.btn-fechar {
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.btn-finalizar {
-    background: #25D366;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-}
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+   }
