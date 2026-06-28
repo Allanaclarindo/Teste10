@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bella Flor - Moda Feminina</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Ícones FontAwesome para o carrinho e WhatsApp ficarem bonitos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
-    <!-- CABEÇALHO -->
     <header>
         <h1>Bella Flor</h1>
         <p>Moda Feminina</p>
     </header>
 
-    <!-- BARRA DE BUSCA E CATEGORIAS -->
     <section class="busca-filtros">
         <div class="busca">
             <input type="text" id="buscar" onkeyup="buscarProdutos()" placeholder="🔍 Buscar produtos...">
@@ -34,25 +31,21 @@
         </div>
     </section>
 
-    <!-- SEÇÃO PRINCIPAL DO CATÁLOGO -->
     <main>
         <section id="produtos">
             <h2>Catálogo</h2>
             <div id="lista-produtos" class="produtos">
-                <!-- Os produtos do JSON serão carregados aqui via JavaScript -->
-            </div>
+                </div>
         </section>
     </main>
 
-    <!-- MENU DO CARRINHO LATERAL -->
     <div id="carrinho-lateral" class="carrinho">
         <div class="carrinho-header">
             <h3>🛒 Seu Carrinho</h3>
             <button onclick="fecharCarrinho()" class="btn-fechar">Fechar X</button>
         </div>
         <div id="itens-carrinho">
-            <!-- Itens adicionados aparecem aqui -->
-        </div>
+            </div>
         <div id="total">
             <b>Subtotal:</b> R$ 0,00<br>
             <b>Frete:</b> R$ 0,00<br>
@@ -63,32 +56,26 @@
         </button>
     </div>
 
-    <!-- MODAL DE DETALHES DO PRODUTO (Escondido por padrão) -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span onclick="fecharModal()" class="fechar-modal">&times;</span>
             <h2 id="modal-nome">Nome do Produto</h2>
             <div id="modal-imagens">
-                <!-- Conteúdo gerado pelo JS -->
-            </div>
+                </div>
         </div>
     </div>
 
-    <!-- BOTÕES FLUTUANTES FIXOS (Ficam grudados e rolam com a tela) -->
     <div class="botoes-flutuantes">
-        <!-- 1º O Carrinho (Fica em cima e ABRE a barra lateral) -->
         <div class="icone-carrinho-fixo" onclick="abrirCarrinho()">
             <i class="fas fa-shopping-cart"></i>
             <span id="contador">0</span>
         </div>
         
-        <!-- 2º O WhatsApp (Fica em baixo e vai direto para a conversa) -->
         <a href="https://wa.me/5591985144347" target="_blank" class="icone-whatsapp-fixo">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
-    <!-- VÍNCULO COM O JAVASCRIPT -->
     <script src="script.js"></script>
 </body>
 </html>
