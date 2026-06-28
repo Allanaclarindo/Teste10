@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bella Flor | Moda Feminina</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Bella Flor</h1>
+  <p>Moda Feminina</p>
+</header>
+<section id="produtos">
+  <h2>Catálogo</h2>
+  <div class="produtos" id="lista-produtos"></div>
+</section>
+<!-- MODAL DO PRODUTO -->
+<div id="modal" class="modal">
+  <div class="modal-conteudo">
+    <h3 id="modal-nome"></h3>
+    <!-- O JavaScript preenche esta área -->
+    <div id="modal-imagens"></div>
+    <button onclick="fecharModal()">Fechar</button>
+  </div>
+</div>
+<!-- MODAL TELA CHEIA -->
+<div id="modal-imagem-full" style="
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+">
+  <img id="img-full" src="" style="max-width:100%; max-height:80%;">
+  <div id="miniaturas" style="display:flex; gap:10px; margin-top:10px;"></div>
+  <button onclick="fecharImagemFull()" style="
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:white;
+    border:none;
+    padding:10px;
+    border-radius:50%;
+  ">✕</button>
+</div>
+<!-- BOTÃO DO CARRINHO -->
+<div id="carrinho-btn" onclick="abrirCarrinho()">
+  🛒 <span id="contador">0</span>
+</div>
+<!-- CARRINHO -->
+<div id="carrinho-lateral" class="carrinho">
+  <h2>🛒 Carrinho</h2>
+  <div id="itens-carrinho"></div>
+  <p id="total"></p>
+  <button onclick="enviarCarrinhoWhatsApp()">
+    <img src="imagens/whatsap.png" width="30"> Finalizar compra
+  </button>
+  <button onclick="fecharCarrinho()">
+    Fechar
+  </button>
+</div>
+<!-- BOTÃO FLUTUANTE WHATSAPP -->
+<div id="whatsapp-btn" onclick="enviarCarrinhoWhatsApp()">
+  📲
+</div>
+<script src="script.js"></script>
+</body>
+</html>
