@@ -164,25 +164,26 @@ header p{
 }
 
 /* ==========================================
-   CARRINHO LATERAL (Escondido e Deslizante)
+   CARRINHO LATERAL (Menu Deslizante)
 ========================================== */
 .carrinho {
     position: fixed;
     top: 0;
-    right: -340px; /* Começa escondido para fora da tela */
+    right: -340px; /* Inicia completamente escondido fora da tela */
     width: 320px;
     height: 100%;
     background: white;
     box-shadow: -5px 0 15px rgba(0,0,0,0.15);
-    transition: right 0.3s ease;
-    z-index: 10000;
+    transition: right 0.3s ease; /* Transição de deslize suave */
+    z-index: 10000; /* Fica sobreposto a tudo */
     padding: 20px;
     display: flex;
     flex-direction: column;
 }
 
+/* Ativado via JavaScript */
 .carrinho.ativo {
-    right: 0; /* Desliza para dentro da tela */
+    right: 0; /* Entra na tela deslizando */
 }
 
 .carrinho-header {
@@ -241,7 +242,7 @@ header p{
 }
 
 /* ==========================================
-   MODAL DE DETALHES
+   MODAL DE DETALHES DO PRODUTO
 ========================================== */
 .modal {
     display: none; 
@@ -275,16 +276,16 @@ header p{
 }
 
 /* ==========================================
-   BOTÕES FLUTUANTES (CARRINHO EM CIMA / WHATSAPP EM BAIXO)
+   BOTÕES FLUTUANTES (EMPILHAMENTO FIXO)
 ========================================== */
 .botoes-flutuantes {
     position: fixed;
     bottom: 25px;       
     right: 25px;        
     display: flex;
-    flex-direction: column; 
-    gap: 15px;          
-    z-index: 9999;      /* Fica acima de tudo no catálogo */
+    flex-direction: column; /* Força um elemento em cima do outro */
+    gap: 15px;          /* Espaço exato entre eles */
+    z-index: 9999;      /* Mantém à frente de tudo na rolagem */
 }
 
 .icone-carrinho-fixo, .icone-whatsapp-fixo {
@@ -302,12 +303,12 @@ header p{
     position: relative;
 }
 
-/* Cor do botão superior (Carrinho) */
+/* Estilização do Carrinho (Botão de cima) */
 .icone-carrinho-fixo {
     background: #7B5CFF;
 }
 
-/* Cor do botão inferior (WhatsApp) */
+/* Estilização do WhatsApp (Botão de baixo) */
 .icone-whatsapp-fixo {
     background: #25D366;
     text-decoration: none;
@@ -317,7 +318,7 @@ header p{
     transform: scale(1.08);
 }
 
-/* Indicador Vermelho de Notificação de Itens */
+/* Contador Vermelho de Itens em cima do ícone do Carrinho */
 #contador {
     position: absolute;
     top: -3px;
@@ -333,4 +334,4 @@ header p{
     justify-content: center;
     font-weight: bold;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-   }
+}
