@@ -201,3 +201,39 @@ function buscarProdutos(){
   });
 
 }
+function filtrarCategoria(categoria){
+
+    if(categoria==="Todos"){
+        renderizarProdutos();
+        return;
+    }
+
+    lista.innerHTML="";
+
+    produtos
+    .filter(p=>p.categoria===categoria)
+    .forEach((p,index)=>{
+
+        let img=p.imagens || [p.imagem];
+
+        lista.innerHTML+=`
+
+        <div class="produto">
+
+            <img src="${img[0]}" onclick="abrirModal(${produtos.indexOf(p)})">
+
+            <h3>${p.nome}</h3>
+
+            <p>${p.preco}</p>
+
+            <button onclick="abrirModal(${produtos.indexOf(p)})">
+            Comprar
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
